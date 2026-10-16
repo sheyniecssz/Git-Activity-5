@@ -1,1 +1,1 @@
-console.log(Auth service running');
+//auth service
