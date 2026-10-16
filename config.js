@@ -1,2 +1,2 @@
-const paymentUrl = 'https://payments.technova.dev';
-const stagingUrl = 'https://staging.technova.dev';
+const paymentUrl = 'https://technova.dev';
+const stagingUrl = "https://technova.dev';
