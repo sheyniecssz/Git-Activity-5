@@ -1,0 +1,56 @@
+Part 2: Troubleshooting & Emergency Fixes 
+
+1. The "Oops, wrong file" Problem
+    • Problem: Staging a file containing sensitive database passwords (.env) by mistake via git add . before a commit.
+    • Solution: Unstage the specific file while keeping local changes intact.
+    • Command: git restore --staged .env
+
+2. The "Typo in the message" Problem
+    • Problem: Misspelling a word in the most recent commit message before pushing to the remote repository.
+    • Solution: Modify the latest commit message without creating an entirely new commit node.
+    • Command: git commit --amend -m "Fixed authentication typo"
+
+3. The "Forgot a file" Problem
+    • Problem: Leaving a minor CSS file (styles.css) out of the previous commit.
+    • Solution: Stage the forgotten file and merge it into the previous commit without changing the message.
+    • Command: 
+        git add styles.css
+        git commit --amend --no-edit
+
+4. The "I hate these changes" Problem
+    • Problem: Breaking the code in index.html during testing before staging or committing it.
+    • Solution: Discard all local changes in the working directory for that file to return to the last commit state.
+    • Command: git restore index.html
+
+5. The "Wrong Branch" Problem
+    • Problem: Making 3 commits on the main branch instead of a dedicated feature branch before pushing.
+    • Solution: Create a new branch pointing to these commits and roll main back by 3 commits.
+    • Command: 
+        git branch new-feature
+        git reset HEAD~3 --hard
+        git checkout new-feature
+
+6. The "Detached HEAD" Problem
+    • Problem: Making and committing changes while viewing old code using a commit hash, causing a detached HEAD state.
+    • Solution: Create a new branch at the current location to save the floating commits.
+    • Command: git switch -c recovery-branch
+
+7. The "Undo a pushed mistake" Problem
+    • Problem: Pushing a buggy commit to a shared GitHub repository that breaks the live application.
+    • Solution: Create a brand new commit that does the exact opposite of the buggy commit to preserve public history.
+    • Command: git revert <buggy-commit-hash>
+
+8. The "Accidental Deletion" Problem
+    • Problem: Deleting an unmerged working branch by mistake using git branch -d.
+    • Solution: Recover the deleted branch using its last known commit hash from the reflog history.
+    • Command: git branch <deleted-branch-name> <commit-hash>
+
+9. The "Ghost Files" Problem
+    • Problem: Deleting files using a system file explorer so they show as unstaged deletions in git status.
+    •  Solution: Tell Git to record the deletions and stage them for the next commit.
+    • Command: git add -u
+
+10. The "Pushed to the void" Problem
+    • Problem: Pushing an accidental or temporary test branch (testing-junk) to a shared remote GitHub repository.
+    • Solution: Delete the remote branch copy directly from the local terminal.
+    • Command: git push origin --delete testing-junk
